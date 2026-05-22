@@ -1,14 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="estilo.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda Simple</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f4;
+      color:#333;
+    }
+
+    header{
+      background:#111827;
+      color:white;
+      padding:20px;
+      text-align:center;
+    }
+
+    header h1{
+      margin-bottom:10px;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:30px auto;
+    }
+
+    .productos{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:white;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:15px;
+    }
+
+    .card h3{
+      margin-bottom:10px;
+    }
+
+    .precio{
+      font-size:22px;
+      color:#10b981;
+      margin-bottom:15px;
+      font-weight:bold;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      background:#2563eb;
+      color:white;
+      font-size:16px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#1d4ed8;
+    }
+
+    .carrito{
+      margin-top:40px;
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .carrito h2{
+      margin-bottom:15px;
+    }
+
+    .item{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:10px;
+      padding-bottom:10px;
+      border-bottom:1px solid #ddd;
+    }
+
+    .total{
+      margin-top:20px;
+      font-size:22px;
+      font-weight:bold;
+      text-align:right;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+      background:#111827;
+      color:white;
+    }
+  </style>
 </head>
 <body>
-    <h1>Lorem, ipsum dolor.</h1>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat culpa dignissimos optio, ea incidunt quisquam id ipsam eaque, doloremque, ad tempora dolor. Reiciendis, libero voluptate. Officiis ratione incidunt provident placeat.</p>
+  <header>
+    <h1>Mi Tienda Online</h1>
+    <p>Productos simples con carrito de compras</p>
+  </header>
+
+  <div class="container">
+
+    <div class="productos">
+
+      <div class="card">
+        <img src="https://picsum.photos/300/220?1" alt="Producto">
+        <div class="card-content">
+          <h3>Zapatos Deportivos</h3>
+          <div class="precio">$50</div>
+          <button onclick="agregarProducto('Zapatos Deportivos', 50)">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://picsum.photos/300/220?2" alt="Producto">
+        <div class="card-content">
+          <h3>Auriculares</h3>
+          <div class="precio">$35</div>
+          <button onclick="agregarProducto('Auriculares', 35)">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://picsum.photos/300/220?3" alt="Producto">
+        <div class="card-content">
+          <h3>Smartwatch</h3>
+          <div class="precio">$80</div>
+          <button onclick="agregarProducto('Smartwatch', 80)">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="carrito">
+      <h2>🛒 Carrito</h2>
+
+      <div id="lista-carrito"></div>
+
+      <div class="total">
+        Total: $<span id="total">0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Mi Tienda Online</p>
+  </footer>
+
+  <script>
+    let total = 0;
+
+    function agregarProducto(nombre, precio){
+
+      const lista = document.getElementById("lista-carrito");
+
+      const item = document.createElement("div");
+      item.classList.add("item");
+
+      item.innerHTML = `
+        <span>${nombre}</span>
+        <span>$${precio}</span>
+      `;
+
+      lista.appendChild(item);
+
+      total += precio;
+
+      document.getElementById("total").textContent = total;
+    }
+  </script>
+
 </body>
 </html>
